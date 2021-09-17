@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  .edit-table{
+    margin-left: 20%;
+    margin-top: 6rem !important;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 90%;
+  }
+</style>
+
+<body>
+  <div class=" mt-5 col-xs-12 col-sm-6 edit-table">
+    {% if insert %}
+    <h2>Inserir cliente</h2>
+    {% else %}
+      <h1>Editar cliente</h1>
+        {% endif %}
+            {% if not insert %}
+            <form id= 'submitform' action="" method="post" target="">
+            {% else %}
+            <form id= 'submitform' action="" method="post" target="">
+            {% endif %}
+      {% csrf_token %}
+        <fieldset>
+          {% if message %}
+          <div class="alert alert-success">
+          <strong>{{message}}</strong>
+          </div>
+          {% endif %}     
+          <label>ID:</label>
+          <input class="form-control" type="number" name="customer_number"  size="50" value="{{customer.customer_number}}">
+          <label>Tipo</label>
+          <input class="form-control"  type="text" name="type_customer" size="50" value="{{customer.type_customer}}">
+          <label>CNPJ</label>
+          <input class="form-control" placeholder = "00.00.000/0001-00" type="text" name="cnpj" size="50" value="{{customer.cnpj}}">
+          <label>Nome</label>
+          <input class="form-control" type="text" name="name" size="50" value="{{customer.name}}">
+          <label>Razão Social</label>
+          <input class="form-control" type="text" name="corporate_name" size="50" value="{{customer.corporate_name}}">
+          <label>E-mail</label>
+          <input class="form-control" type="email" required name="email" size="50" value="{{customer.email}}">
+          <label>Telefone</label>
+          <input class="form-control" type="number" name="phone" size="50" value="{{customer.phone}}">
+        </fieldset>
+        <br>
+        <div class="container-fluid">
+        <input class="btn btn-primary float-left ml-8" type="submit" value="Salvar">
+        <a href="" class="btn btn-warning float-left ml-4">Voltar</a>
+        </div>
+    </form>
+  </div>
+
+</body>
+{% endblock %}
+{% block script %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
