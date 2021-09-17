@@ -1,5 +1,5 @@
-from projeto_luizalabs.core.web.business.empresa_business import do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
-from django.shortcuts import render
+from projeto_luizalabs.core.web.business.empresa_business import do_delete_empresa, do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
+from django.shortcuts import redirect, render
 
 
 
@@ -52,3 +52,8 @@ def empresa_edit(request, empresaID):
     empresa["_id"] = str(empresa["_id"])
     empresa["id"] = empresa["_id"]
     return render(request, "empresa_insert.html", { "message":message,"empresa":empresa})
+
+def delete_empresa(request,empresaID,view=None):
+    do_delete_empresa(empresaID)
+    response = redirect("empresa:empresa_control")
+    return response
