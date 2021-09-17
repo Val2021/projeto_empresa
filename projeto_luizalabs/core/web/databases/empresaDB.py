@@ -27,7 +27,7 @@ def read_empresa_by_id(empresaID):
 def update_empresa(empresaID, update_doc):
     print("update", empresaID)
     try:
-        db.customer.update_one({"_id": ObjectId(empresaID)}, {"$set": update_doc})
+        db.empresa.update_one({"_id": ObjectId(empresaID)}, {"$set": update_doc})
         return True
     except Exception as error:
         print('log:', str(error))

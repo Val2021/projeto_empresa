@@ -30,11 +30,11 @@
 {% block content %}
 
 <div class="container mt-3 position_class_relative"style="font-family: Georgia, 'Times New Roman', Times, serif;">
-    <div class=" float-right">{{username}}</div>
+    <div class=" float-right"></div>
         <h2>Empresas</h2>
    <div class="justify-content-center d-flex">
     <div class="row">
-        <a href="" class="btn btn-info float-left mb-2 mr-5 ">Inserir empresa</a>
+        <a href="{% url 'empresa:empresa_insert' %}" class="btn btn-info float-left mb-2 mr-5 ">Inserir empresa</a>
     </div>
    <form action="" id="tablerfid" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -44,12 +44,10 @@
 <table id="example" class="table table-bordered  table-striped" style="width:100%;box-shadow: 0px 1px 7px #776f6f;font-size: 90%;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">
         <thead>
             <tr>
-              <th>ID</th>
-              <th>Registro</th>
-              <th>Tipo</th>
-              <th>CNPJ</th>
+  
               <th>Nome</th>
               <th>Razão Social</th>
+              <th>CNPJ</th>
               <th>E-mail</th>
               <th>Telefone</th>
               <th>Ação</th>
@@ -57,19 +55,16 @@
            
         </thead>
         <tbody>
-          {% for customer in customers %}
+          {% for empresa in empresas %}
             <tr class="gray">
-              <td>{{customer.id | slice:"-7:"}}</td>
-              <td>{{customer.customer_number}}</td>
-              <td>{{customer.type_customer}}</td>
-              <td>{{customer.cnpj}}</td>
-              <td>{{customer.name}}</td>
-              <td>{{customer.corporate_name}}</td>
-              <td>{{customer.email}}</td>
-              <td>{{customer.phone}}</td>
+              <td>{{empresa.name}}</td>
+              <td>{{empresa.corporate_name}}</td>
+              <td>{{empresa.cnpj}}</td>
+              <td>{{empresa.email}}</td>
+              <td>{{empresa.phone}}</td>
               <td>
                   <div class="row">
-                      <a href=""   class="btn btn-primary float-right ml"><i class="metismenu-icon pe-7s-pen" style="font-size: 17px;" title="Editar"></i></a>
+                      <a href="{% url 'empresa:empresa_edit'  empresa.id %}"   class="btn btn-primary float-right ml"><i class="metismenu-icon pe-7s-pen" style="font-size: 17px;" title="Editar"></i></a>
                       <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
                       <a href="" class="btn btn-info float-left mr-6"><i class="metismenu-icon pe-7s-attention" style="font-size: 17px;" title="Produtos"></i></a>
                   </div>
@@ -79,12 +74,9 @@
         </tbody>
         <tfoot>
             <tr>
-              <th>ID</th>
-              <th>Registro</th>
-              <th>Tipo</th>
-              <th>CNPJ</th>
               <th>Nome</th>
               <th>Razão Social</th>
+              <th>CNPJ</th>
               <th>E-mail</th>
               <th>Telefone</th>
               <th>Ação</th>

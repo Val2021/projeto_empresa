@@ -12,9 +12,9 @@
 <body>
   <div class=" mt-5 col-xs-12 col-sm-6 edit-table">
     {% if insert %}
-    <h2>Inserir cliente</h2>
+    <h2>Inserir empresa</h2>
     {% else %}
-      <h1>Editar cliente</h1>
+      <h1>Editar empresa</h1>
         {% endif %}
             {% if not insert %}
             <form id= 'submitform' action="" method="post" target="">
@@ -28,25 +28,21 @@
           <strong>{{message}}</strong>
           </div>
           {% endif %}     
-          <label>ID:</label>
-          <input class="form-control" type="number" name="customer_number"  size="50" value="{{customer.customer_number}}">
-          <label>Tipo</label>
-          <input class="form-control"  type="text" name="type_customer" size="50" value="{{customer.type_customer}}">
-          <label>CNPJ</label>
-          <input class="form-control" placeholder = "00.00.000/0001-00" type="text" name="cnpj" size="50" value="{{customer.cnpj}}">
           <label>Nome</label>
-          <input class="form-control" type="text" name="name" size="50" value="{{customer.name}}">
+          <input class="form-control" type="text" name="name" size="50" value="{{empresa.name}}">
           <label>Razão Social</label>
-          <input class="form-control" type="text" name="corporate_name" size="50" value="{{customer.corporate_name}}">
+          <input class="form-control" type="text" name="corporate_name" size="50" value="{{empresa.corporate_name}}">
+          <label>CNPJ</label>
+          <input class="form-control" placeholder = "00.00.000/0001-00" type="text" name="cnpj" size="50" value="{{empresa.cnpj}}">
           <label>E-mail</label>
-          <input class="form-control" type="email" required name="email" size="50" value="{{customer.email}}">
+          <input class="form-control" type="email" required name="email" size="50" value="{{empresa.email}}">
           <label>Telefone</label>
-          <input class="form-control" type="number" name="phone" size="50" value="{{customer.phone}}">
+          <input class="form-control" type="text" name="phone" size="50" value="{{empresa.phone}}">
         </fieldset>
         <br>
         <div class="container-fluid">
         <input class="btn btn-primary float-left ml-8" type="submit" value="Salvar">
-        <a href="" class="btn btn-warning float-left ml-4">Voltar</a>
+        <a href="{% url 'empresa:empresa_control' %}" class="btn btn-warning float-left ml-4">Voltar</a>
         </div>
     </form>
   </div>

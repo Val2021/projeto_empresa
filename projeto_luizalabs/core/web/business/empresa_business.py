@@ -15,7 +15,7 @@ def do_read_empresa_all():
 
 
 def do_read_empresa_by_id(empresaID):
-    read_empresa_by_id(empresaID)
+    return read_empresa_by_id(empresaID)
 
 
 def do_update_empresa(empresaID, update_doc):
