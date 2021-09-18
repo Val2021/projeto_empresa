@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block css %} 
+
+<!-- <link href= "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet"/> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+<style>
+    .yellow{background-color:#ecdf48;
+      border-radius: 30px 30px;}
+    .green{background-color:#6ce85e;
+      border-radius: 30px 30px;}
+    .red{background-color:#ef0a10c9;
+      border-radius: 30px 30px;}
+    .gray{background-color:#8d8c83a6;
+      border-radius: 30px 30px;}
+    .position_class_relative{
+    position: relative !important;
+    padding-top: 5% !important;
+    margin-left: 19% !important;
+    width: 81%;
+  }
+  </style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-3 position_class_relative"style="font-family: Georgia, 'Times New Roman', Times, serif;">
+    <div class=" float-right"></div>
+        <h2>Produtos</h2>
+   <div class="justify-content-center d-flex">
+    <div class="row">
+        <a href="{% url 'empresa:produto_insert' %}" class="btn btn-info float-left mb-2 mr-5 ">Inserir produto</a>
+    </div>
+   <form action="" id="tablerfid" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  </form>
+</div>
+
+<table id="example" class="table table-bordered  table-striped" style="width:100%;box-shadow: 0px 1px 7px #776f6f;font-size: 90%;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">
+        <thead>
+            <tr>
+              <th>Código do produto</th>
+              <th>Nome</th>
+              <th>Preço unitário - R$</th>
+              <th>QTD mínima venda</th>
+              <th>Desconto máximo - %</th>
+              <th>Empresa forncedora</th>
+              <th>Ação</th>
+            </tr>
+           
+        </thead>
+        <tbody>
+          {% for produto in produtos %}
+            <tr class="gray">
+              <td>{{produto.produto_codigo}}</td>
+              <td>{{produto.produto_nome}}</td>
+              <td>{{produto.produto_preco}}</td>
+              <td>{{produto.qtdmin}}</td>
+              <td>{{produto.descmax}}</td>
+              <td>{{produto.empresa}}</td>
+              <td>
+                  <div class="row">
+                      <a href=""   class="btn btn-primary float-right ml"><i class="metismenu-icon pe-7s-pen" style="font-size: 17px;" title="Editar"></i></a>
+                      <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
+                  </div>
+              </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Código do produto</th>
+                <th>Nome</th>
+                <th>Preço unitário - R$</th>
+                <th>QTD mínima venda</th>
+                <th>Desconto máximo - %</th>
+                <th>Empresa forncedora</th>
+                <th>Ação</th>
+              </tr>
+        </tfoot>
+</table>
+
+{% endblock %}
+
+{% block script %}
+
+<script>
+  function myFunction() {
+    $("#tablerfid").submit()
+  }
+  </script>
+
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json"
+        }
+    } );
+} );
+
+</script>
+
+{% endblock %}

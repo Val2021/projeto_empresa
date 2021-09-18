@@ -1,3 +1,4 @@
+from projeto_luizalabs.core.web.business.produto_business import do_insert_produto, do_read_produto_all
 from projeto_luizalabs.core.web.business.empresa_business import do_delete_empresa, do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
 from django.shortcuts import redirect, render
 
@@ -29,9 +30,9 @@ def empresa_insert(request):
         message = "Inserido com sucesso!"
     return render(request, "empresa_insert.html", {"insert":True, "message":message,})
 
+
 def empresa_edit(request, empresaID):
     message = ""
-    
     if request.method == "POST":
         cnpj = request.POST.get("cnpj")
         name = request.POST.get("name")
@@ -45,10 +46,8 @@ def empresa_edit(request, empresaID):
                       "email":email,
                       "phone": phone}
         do_update_empresa(empresaID,update_doc)
-        message = "Inserido com sucesso!"
-    print("id",empresaID)
+        message = "Editado com sucesso!"
     empresa = do_read_empresa_by_id(empresaID)
-    print("empre",empresa)
     empresa["_id"] = str(empresa["_id"])
     empresa["id"] = empresa["_id"]
     return render(request, "empresa_insert.html", { "message":message,"empresa":empresa})
@@ -57,3 +56,38 @@ def delete_empresa(request,empresaID,view=None):
     do_delete_empresa(empresaID)
     response = redirect("empresa:empresa_control")
     return response
+
+
+def produto_insert(request):
+    message = ""
+    if request.method == "POST":
+        produto_codigo = request.POST.get("produto_codigo")
+        produto_nome = request.POST.get("produto_nome")
+        produto_preco = request.POST.get("produto_preco")
+        qtdmin = request.POST.get("qtdmin")
+        descmax = request.POST.get("descmax")
+        empresa = request.POST.get("empresa")
+        insert_doc = {
+                      "produto_codigo":produto_codigo,
+                      "produto_nome": produto_nome,
+                      "produto_preco":produto_preco,
+                      "qtdmin":qtdmin,
+                      "descmax":descmax,
+                      "empresa":empresa,
+                      }
+        do_insert_produto(insert_doc)
+        message = "Inserido com sucesso!"
+    empresas = list(do_read_empresa_all())
+    print("empresas",empresas)
+    for empresa in empresas:
+        empresa["_id"] = str(empresa["_id"])
+        empresa["id"] = empresa["_id"]
+    return render(request, "produto_insert.html", {"insert":True, "empresas": empresas,"message":message,})
+
+
+def produto_control(request):
+    produtos=list(do_read_produto_all())
+    print("produto",produtos)
+    for produto in produtos:
+        produto["id"] = str(produto["_id"])
+    return render(request, "produto_control.html", {"produtos":produtos,})
