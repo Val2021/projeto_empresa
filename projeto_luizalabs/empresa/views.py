@@ -1,4 +1,4 @@
-from projeto_luizalabs.core.web.business.produto_business import do_insert_produto, do_read_produto_all
+from projeto_luizalabs.core.web.business.produto_business import do_insert_produto, do_read_produto_all, do_read_produto_empresaName
 from projeto_luizalabs.core.web.business.empresa_business import do_delete_empresa, do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
 from django.shortcuts import redirect, render
 
@@ -91,3 +91,17 @@ def produto_control(request):
     for produto in produtos:
         produto["id"] = str(produto["_id"])
     return render(request, "produto_control.html", {"produtos":produtos,})
+
+def produto_empresa(request,empresaID):
+    empresa = do_read_empresa_by_id(empresaID)
+    empresa_name = str(empresa["name"])
+    produtos = do_read_produto_empresaName(empresa_name)
+    produto_codigo = produtos["produto_codigo"] 
+    produto_nome = produtos["produto_nome"]
+    produto_preco = produtos["produto_preco"] 
+    qtd_minima = produtos["qtdmin"] 
+    desconto = produtos["descmax"] 
+    empresa_nome = produtos["empresa"] 
+    return render(request, "empresa_produto.html", {"produtos":produtos,"produto_codigo":produto_codigo,"produto_nome":produto_nome,"produto_preco":produto_preco,"qtd_minima":qtd_minima,"desconto":desconto,"empresa_nome":empresa_nome})
+
+

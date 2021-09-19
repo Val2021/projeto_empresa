@@ -20,6 +20,12 @@ def read_produto_all():
     return produto
 
 
+def read_produto_empresaName(empresa):
+    name =  db.produto.find_one({"empresa":empresa})
+    return name
+
+
+
 def read_produto_by_id(produtoID):
     return db.produto.find_one({"_id":ObjectId(produtoID)})
 

@@ -31,11 +31,8 @@
 
 <div class="container mt-3 position_class_relative"style="font-family: Georgia, 'Times New Roman', Times, serif;">
     <div class=" float-right"></div>
-        <h2>Empresas</h2>
+        <h2>Relação de produtos da empresa {{empresa_nome}}</h2>
    <div class="justify-content-center d-flex">
-    <div class="row">
-        <a href="{% url 'empresa:empresa_insert' %}" class="btn btn-info float-left mb-2 mr-5 ">Inserir empresa</a>
-    </div>
    <form action="" id="tablerfid" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
   </form>
@@ -44,45 +41,49 @@
 <table id="example" class="table table-bordered  table-striped" style="width:100%;box-shadow: 0px 1px 7px #776f6f;font-size: 90%;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">
         <thead>
             <tr>
-  
+              <th>Código do produto</th>
               <th>Nome</th>
-              <th>Razão Social</th>
-              <th>CNPJ</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
+              <th>Preço unitário - R$</th>
+              <th>QTD mínima venda</th>
+              <th>Desconto máximo - %</th>
+              <th>Empresa forncedora</th>
               <th>Ação</th>
             </tr>
            
         </thead>
         <tbody>
-          {% for empresa in empresas %}
+          
             <tr class="gray">
-              <td>{{empresa.name}}</td>
-              <td>{{empresa.corporate_name}}</td>
-              <td>{{empresa.cnpj}}</td>
-              <td>{{empresa.email}}</td>
-              <td>{{empresa.phone}}</td>
+              <td>{{produto_codigo}}</td>
+              <td>{{produto_nome}}</td>
+              <td>{{produto_preco}}</td>
+              <td>{{qtd_minima}}</td>
+              <td>{{desconto}}</td>
+              <td>{{empresa_nome}}</td>
               <td>
                   <div class="row">
-                      <a href="{% url 'empresa:empresa_edit'  empresa.id %}"   class="btn btn-primary float-right ml"><i class="metismenu-icon pe-7s-pen" style="font-size: 17px;" title="Editar"></i></a>
-                      <a href="{% url 'empresa:delete_empresa'  empresa.id %}" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
-                      <a href="{% url 'empresa:produto_empresa' empresa.id %}" class="btn btn-info float-left mr-6"><i class="metismenu-icon pe-7s-attention" style="font-size: 17px;" title="Produtos"></i></a>
+                      <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
                   </div>
               </td>
             </tr>
-            {% endfor %}
+           
         </tbody>
         <tfoot>
             <tr>
-              <th>Nome</th>
-              <th>Razão Social</th>
-              <th>CNPJ</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
-              <th>Ação</th>
+                <th>Código do produto</th>
+                <th>Nome</th>
+                <th>Preço unitário - R$</th>
+                <th>QTD mínima venda</th>
+                <th>Desconto máximo - %</th>
+                <th>Empresa forncedora</th>
+                <th>Ação</th>
               </tr>
         </tfoot>
 </table>
+<div class="col-md-offset-2 col-md-10">
+    <a href= "{% url 'empresa:empresa_control' %}" class="btn btn-secondary">Voltar</a>
+</div>
+
 
 {% endblock %}
 
