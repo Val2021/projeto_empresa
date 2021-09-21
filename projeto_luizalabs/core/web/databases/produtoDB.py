@@ -8,7 +8,7 @@ db = client.LuizaLabsProject
 
 
 def insert_produto(insert_doc):
-    return db.produto.insert_one(insert_doc)
+    return str(db.produto.insert_one(insert_doc).inserted_id)
 
 
 def delete_produto(produtoID):
@@ -21,7 +21,7 @@ def read_produto_all():
 
 
 def read_produto_empresaName(empresa):
-    name =  db.produto.find_one({"empresa":empresa})
+    name =  db.produto.find({"empresa":empresa})
     return name
 
 

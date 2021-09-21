@@ -18,5 +18,5 @@ def do_read_empresa_by_id(empresaID):
     return read_empresa_by_id(empresaID)
 
 
-def do_update_empresa(empresaID, update_doc):
-    return update_empresa (empresaID, update_doc)
+def do_update_empresa(id_empresa,empresa):
+    return update_empresa (id_empresa,empresa)

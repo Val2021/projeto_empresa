@@ -8,7 +8,7 @@ db = client.LuizaLabsProject
 
 
 def insert_empresa(empresa):
-    return db.empresa.insert_one(empresa)
+    return str(db.empresa.insert_one(empresa).inserted_id)
 
 
 def delete_empresa(empresaID):
@@ -24,10 +24,9 @@ def read_empresa_by_id(empresaID):
     return db.empresa.find_one({"_id":ObjectId(empresaID)})
 
 
-def update_empresa(empresaID, update_doc):
-    print("update", empresaID)
+def update_empresa(id_empresa,empresa):
     try:
-        db.empresa.update_one({"_id": ObjectId(empresaID)}, {"$set": update_doc})
+        db.empresa.update_one({"_id": ObjectId(id_empresa)}, {"$each": empresa})
         return True
     except Exception as error:
         print('log:', str(error))

@@ -52,21 +52,21 @@
            
         </thead>
         <tbody>
-          
+          {% for produto in produtos %}
             <tr class="gray">
-              <td>{{produto_codigo}}</td>
-              <td>{{produto_nome}}</td>
-              <td>{{produto_preco}}</td>
-              <td>{{qtd_minima}}</td>
-              <td>{{desconto}}</td>
-              <td>{{empresa_nome}}</td>
+              <td>{{produto.produto_codigo}}</td>
+              <td>{{produto.produto_nome}}</td>
+              <td>{{produto.produto_preco}}</td>
+              <td>{{produto.qtdmin}}</td>
+              <td>{{produto.descmax}}</td>
+              <td>{{produto.empresa}}</td>
               <td>
                   <div class="row">
                       <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
                   </div>
               </td>
             </tr>
-           
+          {% endfor %}
         </tbody>
         <tfoot>
             <tr>
