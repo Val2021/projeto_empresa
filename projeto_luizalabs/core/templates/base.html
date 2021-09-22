@@ -28,6 +28,10 @@
 </head>
 
 <body>
+    <div class="app-header__logo" style="z-index: 1;">
+        <img width="80" src="{% static '/image/magalu-logo.svg' %}" style="z-index: 38;margin-left: 39px; margin-top: 121px;"alt="logo">
+
+    </div>
     <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar" style="display: flex;
     flex-direction: column;margin: 0;background: white;">
         <div class="app-header header-shadow">
@@ -65,7 +69,7 @@
         height: 108vh;">
 
             <div class="app-header__logo">
-                <img width="80" src="{% static '/image/luiza-labs.jpj' %}" style="z-index: 7;margin-left: 39px; margin-top: 20px;"alt="logo">
+               
                 
                 <div class="header__pane ml-auto">
                     <div>
@@ -107,7 +111,7 @@
                         <li class="app-sidebar__heading">Controle interno</li>
                         <li>
                             <a style="cursor: pointer;" href="{% url 'empresa:empresa_control' %}">
-                                <i class="metismenu-icon pe-7s-users"></i>Empresa
+                                <i class="metismenu-icon pe-7s-users"></i>Empresas
                             </a>
                         </li>
         

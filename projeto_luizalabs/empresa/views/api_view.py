@@ -5,6 +5,8 @@ import json
 from projeto_luizalabs.core.web.business.empresa_business import do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
 
 
+
+#-----API-listar--empresas--cadastradas---
 def api_get_empresa_all(request):
     if request.method == "GET":
         empresas = list(do_read_empresa_all())
@@ -12,6 +14,8 @@ def api_get_empresa_all(request):
             empresa["_id"] = str(empresa["_id"])
         return JsonResponse({"empresas":empresas})
 
+
+#-----API-listar--produtos--cadastrados---
 def api_get_produto_all(request):
     if request.method == "GET":
         produtos = list(do_read_produto_all())
@@ -19,7 +23,9 @@ def api_get_produto_all(request):
             produto["_id"] = str(produto["_id"])
         return JsonResponse({"produtos":produtos})
 
-#____Cadastrar produtos___________________________
+
+
+#-----API-cadastrar--produtos--------------------------------
 @csrf_exempt
 def api_cadastrar_produto(request):
      if request.method == "POST":
@@ -31,7 +37,7 @@ def api_cadastrar_produto(request):
             list_ids.append({produto["produto_nome"]:inserted_id})
         return JsonResponse({"list_ids":list_ids})
 
-#___Cadastrar empresa_______________________________________
+#-----API-cadastrar--empresas--------------------------------
 @csrf_exempt
 def api_cadastrar_empresa(request):
      if request.method == "POST":
@@ -40,21 +46,20 @@ def api_cadastrar_empresa(request):
         inserted_id = do_insert_empresa(empresa)
         return JsonResponse({"inserted_id":inserted_id})
 
-#__cadastrar produto na empresa________________________
+
+#-----API-cadastrar--produtos-em-uma-empresa--------------------------------
 @csrf_exempt
 def api_add_produtoEmpresa(request):
      if request.method == "POST":
         data_json = json.loads(request.body)
         id_empresa = data_json["id_empresa"]
         produto = data_json["produtos"]
-        print("id_empresa",id_empresa,produto)
         empresa=do_read_empresa_by_id(id_empresa)
         empresa["produtos"].extend(produto)
-        print("chave",empresa["produtos"])
         inserted_id = do_update_empresa(id_empresa,empresa)
         return JsonResponse({"inserted_id":inserted_id})
 
-#__remover produto na empresa________________________
+#-----API-remover--produtos-de-uma-empresa--------------------------------
 @csrf_exempt
 def api_delete_produtoEmpresa(request):
      if request.method == "DELETE":

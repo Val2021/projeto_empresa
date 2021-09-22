@@ -62,7 +62,7 @@
               <td>{{empresa.name}}</td>
               <td>
                   <div class="row">
-                      <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
+                      <a href="{% url 'empresa:delete_produto_empresa' empresaID  %}" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
                   </div>
               </td>
             </tr>
