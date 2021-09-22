@@ -26,7 +26,7 @@ def read_empresa_by_id(empresaID):
 
 def update_empresa(id_empresa,empresa):
     try:
-        db.empresa.update_one({"_id": ObjectId(id_empresa)}, {"$each": empresa})
+        db.empresa.update({"_id": ObjectId(id_empresa)}, {"$set": empresa})
         return True
     except Exception as error:
         print('log:', str(error))

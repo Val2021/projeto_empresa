@@ -44,42 +44,21 @@
 <table id="example" class="table table-bordered  table-striped" style="width:100%;box-shadow: 0px 1px 7px #776f6f;font-size: 90%;font-weight: 500;font-family: Georgia, 'Times New Roman', Times, serif;">
         <thead>
             <tr>
-              <th>Código do produto</th>
               <th>Nome</th>
-              <th>Preço unitário - R$</th>
-              <th>QTD mínima venda</th>
-              <th>Desconto máximo - %</th>
-              <th>Empresa forncedora</th>
-              <th>Ação</th>
             </tr>
            
         </thead>
         <tbody>
           {% for produto in produtos %}
             <tr class="gray">
-              <td>{{produto.produto_codigo}}</td>
               <td>{{produto.produto_nome}}</td>
-              <td>{{produto.produto_preco}}</td>
-              <td>{{produto.qtdmin}}</td>
-              <td>{{produto.descmax}}</td>
-              <td>{{produto.empresa}}</td>
-              <td>
-                  <div class="row">
-                      <a href="{% url 'empresa:delete_produto' produto.id %}"  class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
-                  </div>
-              </td>
+             
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
-            <tr>
-                <th>Código do produto</th>
+            <tr>  
                 <th>Nome</th>
-                <th>Preço unitário - R$</th>
-                <th>QTD mínima venda</th>
-                <th>Desconto máximo - %</th>
-                <th>Empresa forncedora</th>
-                <th>Ação</th>
               </tr>
         </tfoot>
 </table>

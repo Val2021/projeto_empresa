@@ -31,7 +31,7 @@
 
 <div class="container mt-3 position_class_relative"style="font-family: Georgia, 'Times New Roman', Times, serif;">
     <div class=" float-right"></div>
-        <h2>Relação de produtos da empresa {{empresa_nome}}</h2>
+        <h2>Relação de produtos da empresa {{empresa.name}}</h2>
    <div class="justify-content-center d-flex">
    <form action="" id="tablerfid" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -59,14 +59,14 @@
               <td>{{produto.produto_preco}}</td>
               <td>{{produto.qtdmin}}</td>
               <td>{{produto.descmax}}</td>
-              <td>{{produto.empresa}}</td>
+              <td>{{empresa.name}}</td>
               <td>
                   <div class="row">
                       <a href="" class="btn btn-danger float-right mr-7"><i class="metismenu-icon pe-7s-trash" style="font-size: 17px;" title="Deletar"></i></a>
                   </div>
               </td>
             </tr>
-          {% endfor %}
+         {% endfor %}
         </tbody>
         <tfoot>
             <tr>

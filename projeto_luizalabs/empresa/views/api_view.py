@@ -49,7 +49,24 @@ def api_add_produtoEmpresa(request):
         produto = data_json["produtos"]
         print("id_empresa",id_empresa,produto)
         empresa=do_read_empresa_by_id(id_empresa)
-        empresa["produtos"] = produto
+        empresa["produtos"].extend(produto)
         print("chave",empresa["produtos"])
         inserted_id = do_update_empresa(id_empresa,empresa)
         return JsonResponse({"inserted_id":inserted_id})
+
+#__remover produto na empresa________________________
+@csrf_exempt
+def api_delete_produtoEmpresa(request):
+     if request.method == "DELETE":
+        data_json = json.loads(request.body)
+        id_empresa = data_json["id_empresa"]
+        produtos = data_json["produtos"]
+        empresa=do_read_empresa_by_id(id_empresa)
+        for id_produto in produtos:
+            for produto in empresa["produtos"]:
+                if id_produto == produto["id_produto"]:
+                    empresa["produtos"].remove(produto)
+        inserted_id = do_update_empresa(id_empresa,empresa)
+        return JsonResponse({"inserted_id":inserted_id})
+
+

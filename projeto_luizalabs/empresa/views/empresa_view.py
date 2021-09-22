@@ -52,10 +52,10 @@ def empresa_insert(request):
 #     empresa["id"] = empresa["_id"]
 #     return render(request, "empresa_insert.html", { "message":message,"empresa":empresa})
 
-def delete_empresa(request,empresaID,view=None):
-    do_delete_empresa(empresaID)
-    response = redirect("empresa:empresa_control")
-    return response
+# def delete_empresa(request,empresaID,view=None):
+#     do_delete_empresa(empresaID)
+#     response = redirect("empresa:empresa_control")
+#     return response
 
 
 def add_produto_empresa(request,empresaID):
