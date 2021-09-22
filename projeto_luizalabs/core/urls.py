@@ -19,5 +19,6 @@ from django.urls import path
 app_name = "core"
 urlpatterns = [
     path('', home, name="home"),
+    path('dashboard',dashboard, name="dashboard"),
 
 ]
