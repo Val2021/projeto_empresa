@@ -31,31 +31,31 @@ def empresa_insert(request):
     return render(request, "empresa_insert.html", {"insert":True, "message":message,})
 
 
-# def empresa_edit(request, empresaID):
-#     message = ""
-#     if request.method == "POST":
-#         cnpj = request.POST.get("cnpj")
-#         name = request.POST.get("name")
-#         corporate_name = request.POST.get("corporate_name")
-#         email = request.POST.get("email")
-#         phone = request.POST.get("phone")
-#         update_doc = {
-#                       "cnpj": cnpj,
-#                       "name": name,
-#                       "corporate_name":corporate_name,
-#                       "email":email,
-#                       "phone": phone}
-#         do_update_empresa(empresaID,update_doc)
-#         message = "Editado com sucesso!"
-#     empresa = do_read_empresa_by_id(empresaID)
-#     empresa["_id"] = str(empresa["_id"])
-#     empresa["id"] = empresa["_id"]
-#     return render(request, "empresa_insert.html", { "message":message,"empresa":empresa})
+def empresa_edit(request, empresaID):
+    message = ""
+    if request.method == "POST":
+        cnpj = request.POST.get("cnpj")
+        name = request.POST.get("name")
+        corporate_name = request.POST.get("corporate_name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        update_doc = {
+                      "cnpj": cnpj,
+                      "name": name,
+                      "corporate_name":corporate_name,
+                      "email":email,
+                      "phone": phone}
+        do_update_empresa(empresaID,update_doc)
+        message = "Editado com sucesso!"
+    empresa = do_read_empresa_by_id(empresaID)
+    empresa["_id"] = str(empresa["_id"])
+    empresa["id"] = empresa["_id"]
+    return render(request, "empresa_insert.html", { "message":message,"empresa":empresa})
 
-# def delete_empresa(request,empresaID,view=None):
-#     do_delete_empresa(empresaID)
-#     response = redirect("empresa:empresa_control")
-#     return response
+def delete_empresa(request,empresaID,view=None):
+    do_delete_empresa(empresaID)
+    response = redirect("empresa:empresa_control")
+    return response
 
 
 def add_produto_empresa(request,empresaID):
