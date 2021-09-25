@@ -31,3 +31,11 @@ def update_empresa(id_empresa,empresa):
     except Exception as error:
         print('log:', str(error))
         return False
+
+def update_empresaProduto(id_empresa,produto):
+    try:
+        db.empresa.update_one({"_id": ObjectId(id_empresa)}, {"$set":produto})
+        return True
+    except Exception as error:
+        print('log:', str(error))
+        return False

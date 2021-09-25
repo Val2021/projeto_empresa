@@ -1,5 +1,5 @@
-from projeto_luizalabs.core.web.business.produto_business import do_read_produto_all
-from projeto_luizalabs.core.web.business.empresa_business import do_delete_empresa, do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa
+from projeto_luizalabs.core.web.business.produto_business import do_read_produto_all, do_read_produto_by_id
+from projeto_luizalabs.core.web.business.empresa_business import do_delete_empresa, do_insert_empresa, do_read_empresa_all, do_read_empresa_by_id, do_update_empresa, do_update_empresaProduto
 from django.shortcuts import redirect, render
 
 
@@ -78,6 +78,29 @@ def add_produto_empresa(request,empresaID):
     produtos=list(do_read_produto_all())
     for produto in produtos:
         produto["id"] = str(produto["_id"])
-    return render(request, "add_produto_empresa.html", {"produtos":produtos,"empresa":empresa})
+    return render(request, "add_produto_empresa.html", {"produtos":produtos,"empresa":empresa,"empresaID":empresaID})
+
+
+def produtoEditar(request,empresaID):
+    empresa = do_read_empresa_by_id(empresaID)
+    if request.method == "POST":
+        id_produto = request.POST.get("id_produto")
+        produto_codigo = request.POST.get("produto_codigo")
+        produto_preco = request.POST.get("produto_preco") 
+        qtd_minima = request.POST.get("qtdmin")
+        desconto = request.POST.get("descmax")
+        produto_doc= {
+            "id_produto":id_produto,
+            "produto_codigo":produto_codigo,
+            "produto_preco":produto_preco,
+            "qtdmin":qtd_minima,
+            "descmax":  desconto
+        }
+        empresa["produtos"].append(produto_doc)
+        do_update_empresaProduto(empresaID,empresa)
+    produtos = empresa["produtos"]
+    for produto in produtos:
+        produto["produto_nome"] = do_read_produto_by_id(produto["id_produto"])["produto_nome"]
+    return render(request, "produto_editar.html", {"produtos": produtos,"empresa":empresa,"empresaID":empresaID})
 
 

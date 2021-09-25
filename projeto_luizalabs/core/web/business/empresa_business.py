@@ -1,5 +1,5 @@
 
-from projeto_luizalabs.core.web.databases.empresaDB import delete_empresa, insert_empresa, read_empresa_all, read_empresa_by_id, update_empresa
+from projeto_luizalabs.core.web.databases.empresaDB import delete_empresa, insert_empresa, read_empresa_all, read_empresa_by_id, update_empresa, update_empresaProduto
 
 
 def do_insert_empresa(empresa):
@@ -20,3 +20,6 @@ def do_read_empresa_by_id(empresaID):
 
 def do_update_empresa(id_empresa,empresa):
     return update_empresa (id_empresa,empresa)
+
+def do_update_empresaProduto(id_empresa,produto):
+    return update_empresaProduto (id_empresa,produto)
