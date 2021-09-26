@@ -26,7 +26,6 @@ def produto_empresa(request,empresaID):
     produtos = empresa["produtos"]
     for produto in produtos:
         produto["produto_nome"] = do_read_produto_by_id(produto["id_produto"])["produto_nome"]
-    print("prdutos", produtos)
     return render(request, "empresa_produto.html", {"produtos": produtos,"empresa":empresa,"empresaID":empresaID})
     
 
