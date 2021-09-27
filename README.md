@@ -52,7 +52,7 @@ O servidor será iniciado na porta: 8000
 - [x] Cadastro de produtos
 
 ## 🚀 Deploy
-Dockerfile
+Docker
  
     docker pull alicepass/app-magalu:v4
     docker run -itd -p 80:8000 --name app-magalu alicepass/app-magalu:v4
