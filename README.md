@@ -9,6 +9,7 @@ MongoDB 4.4.8 Community
 ### Pré-requisitos:
 - [Python 3.8](https://www.python.org/)
 - [MongoDB 4](https://docs.mongodb.com/)
+- [Docker version 20.10.8](https://www.docker.com/)
 
 ### Clonando o repositório
     https://github.com/Val2021/projeto_empresa.git
@@ -53,7 +54,24 @@ O servidor será iniciado na porta: 8000
 ## 🚀 Deploy
 Dockerfile
  
-    docker build / docker run
+    docker pull alicepass/app-magalu:v4
+    docker run -itd -p 80:8000 --name app-magalu alicepass/app-magalu:v4
+    
+Após o deploy acessar no browser: 127.0.0.1
+
+
+## 🚀 Aplicação em Nuvem
+O deploy da aplicação também foi realizado no Google Cloud Plataform
+
+Para subir a imagem no GCP:
+ 
+    docker pull alicepass/app-magalu:v4
+    docker tag alicepass/app-magalu:v4 gcr.io/earnest-coder-326622/alicepass/app-magalu:v4
+    docker push gcr.io/earnest-coder-326622/alicepass/app-magalu:v4
+    
+A aplicação pode ser acessada em:
+- [Magalu](http://35.222.91.178/)
+    
 
 ## Contribuidores:
 <table>
