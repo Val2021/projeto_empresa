@@ -1,6 +1,6 @@
 # 🚀 Projeto Empresa
 
-Projeto elaborado como parte do programa LuizaLabs
+Projeto elaborado como parte do programa Luiza Code.
 A versão utilizada para desenvolvimento foi Python 3.8
 A versão do banco de dados foi MongoDB 4.4.8 Community Standalone
 MongoDB 4.4.8 Community
